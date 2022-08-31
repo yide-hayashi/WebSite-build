@@ -12,7 +12,7 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        string sqlconStr = WebConfigurationManager.ConnectionStrings[2].ToString();
+        string sqlconStr = WebConfigurationManager.ConnectionStrings[1].ToString();
         public ActionResult Index()
         {
             string[] imgpath = { "" };
@@ -288,7 +288,8 @@ namespace WebApplication1.Controllers
         }
         private string[] selectTurnImg()
         {
-            string sqlstr = @"SELECT * FROM localsql.optionheadturnimg";
+            
+            string sqlstr = @"SELECT * FROM localsql.OptionHeadTurnImg";
             string[] imgpath = new string[] { "" };
             int i = 0;
             MySqlConnection con = new MySqlConnection(sqlconStr);

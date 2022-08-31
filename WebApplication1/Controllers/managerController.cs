@@ -17,7 +17,7 @@ namespace WebApplication1.Controllers
         private static List<string> list = new List<string>();
         private static string imgstr = "", modoimg = "" ;
         private static int selectedcount = 0;
-        string sqlconStr = WebConfigurationManager.ConnectionStrings[2].ToString();
+        string sqlconStr = WebConfigurationManager.ConnectionStrings[1].ToString();
         // GET: manager
         [HttpGet]
         public ActionResult Index()
