@@ -261,3 +261,5 @@ __pycache__/
 *.pyc
 /WebApplication1/album/
 /WebApplication1/Files/
+/MVC mod ver1/
+*.pdf

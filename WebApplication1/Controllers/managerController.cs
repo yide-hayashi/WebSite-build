@@ -37,7 +37,9 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            return View();
+            managerModel model = new managerModel();
+
+            return View(model);
         }
         [HttpPost]
         public ActionResult Login(managerModel mm)
@@ -608,7 +610,7 @@ namespace WebApplication1.Controllers
                             if (!Directory.Exists(Server.MapPath("~/img/head")))
                                 Directory.CreateDirectory(Server.MapPath("~/img/head"));
                             string path = Path.Combine(Server.MapPath("~/img/head"), fileName);
-                            string sqlstr = @"UPDATE headimg SET HeadImg=@HeadImg 
+                            string sqlstr = @"UPDATE HeadImg SET HeadImg=@HeadImg 
                                 WHERE count=@count";
                             MySqlConnection con = new MySqlConnection(sqlconStr);
                             MySqlCommand link;
@@ -680,8 +682,8 @@ namespace WebApplication1.Controllers
                             if (!Directory.Exists(Server.MapPath("~/img/turn")))
                                 Directory.CreateDirectory(Server.MapPath("~/img/turn"));
                             string path = Path.Combine(Server.MapPath("~/img/turn"), fileName),
-                                sqlstrselect = @"SELECT count FROM localsql.optionheadturnimg",
-                            sqlstr = @"INSERT INTO optionheadturnimg(
+                                sqlstrselect = @"SELECT count FROM localsql.OptionHeadTurnImg",
+                            sqlstr = @"INSERT INTO OptionHeadTurnImg(
                                 headPageTurnImg,count
                             )VALUES(
                                @headPageTurnImg,@count)";
@@ -734,7 +736,7 @@ namespace WebApplication1.Controllers
             {
                 return RedirectToAction("Login");
             }
-            string sqlstr = @"DELETE FROM optionheadturnimg
+            string sqlstr = @"DELETE FROM OptionHeadTurnImg
                             WHERE count=@count";
             MySqlConnection con = new MySqlConnection(sqlconStr);
             MySqlCommand link;
@@ -786,8 +788,8 @@ namespace WebApplication1.Controllers
                 if (mm.OptionAddTrafficInfo_p == null)
                     mm.OptionAddTrafficInfo_p = "";
                 int count = 0;
-                count = selectCount(count, "SELECT count FROM localsql.optionaddress");
-                string sqlstr = @"INSERT INTO localsql.optionaddress(
+                count = selectCount(count, "SELECT count FROM localsql.OptionAddress");
+                string sqlstr = @"INSERT INTO localsql.OptionAddress(
                                 TrafficInfo,phone,address,AddressName,Img,count
                             )VALUES(
                                @TrafficInfo,@phone,@address,@AddressName,@Img,@count)";
@@ -878,7 +880,7 @@ namespace WebApplication1.Controllers
             {
                 return RedirectToAction("Login");
             }
-            string sqlstr = @"SELECT * FROM localsql.optionaddress WHERE( count=" + x.ToString() + ")";
+            string sqlstr = @"SELECT * FROM localsql.OptionAddress WHERE( count=" + x.ToString() + ")";
             managerModel mm = new managerModel();
             int i = 0;
             MySqlConnection con = new MySqlConnection(sqlconStr);
@@ -919,7 +921,7 @@ namespace WebApplication1.Controllers
                 mm.OptionAddImg_p = modoimg;
                 modoimg = "";
             }
-            string sqlstr = @"UPDATE localsql.optionaddress SET AddressName=@AddressName, address=@address,
+            string sqlstr = @"UPDATE localsql.OptionAddress SET AddressName=@AddressName, address=@address,
                         phone=@phone,TrafficInfo=@TrafficInfo,Img=@Img
                                 WHERE count=@count";
             MySqlConnection con = new MySqlConnection(sqlconStr);
@@ -947,7 +949,7 @@ namespace WebApplication1.Controllers
             {
                 return RedirectToAction("Login");
             }
-            string sqlstr = @"DELETE FROM optionaddress
+            string sqlstr = @"DELETE FROM OptionAddress
                             WHERE count=@count";
             MySqlConnection con = new MySqlConnection(sqlconStr);
             MySqlCommand link;
@@ -1356,7 +1358,7 @@ namespace WebApplication1.Controllers
         }
         public List<managerModel> ReadTeachList()
         {
-            string sqlstr = @"SELECT * FROM localsql.Teach  ORDER BY date DESC";
+            string sqlstr = @"SELECT * FROM localsql.teach  ORDER BY date DESC";
 
             MySqlConnection con = new MySqlConnection(sqlconStr);
             MySqlCommand link;
@@ -1381,7 +1383,7 @@ namespace WebApplication1.Controllers
         }
         public List<managerModel> ReadHeadTurnImgList()
         {
-            string sqlstr = @"SELECT headPageTurnImg,count FROM localsql.optionheadturnimg";
+            string sqlstr = @"SELECT headPageTurnImg,count FROM localsql.OptionHeadTurnImg";
 
             MySqlConnection con = new MySqlConnection(sqlconStr);
             MySqlCommand link;
@@ -1404,7 +1406,7 @@ namespace WebApplication1.Controllers
         }
         public List<managerModel> ReadOptionAddressList()
         {
-            string sqlstr = @"SELECT * FROM localsql.optionaddress";
+            string sqlstr = @"SELECT * FROM localsql.OptionAddress";
 
             MySqlConnection con = new MySqlConnection(sqlconStr);
             MySqlCommand link;
@@ -1499,7 +1501,7 @@ namespace WebApplication1.Controllers
         }
         private string[] selectTurnImg()
         {
-            string sqlstr = @"SELECT * FROM localsql.optionheadturnimg";
+            string sqlstr = @"SELECT * FROM localsql.OptionHeadTurnImg";
             string[] imgpath = new string[] { "" };
             int i = 0;
             MySqlConnection con = new MySqlConnection(sqlconStr);

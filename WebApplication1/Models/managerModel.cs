@@ -249,7 +249,7 @@ namespace WebApplication1.Models
                                 title,type,type_eventtype,Content,date
                             )VALUES(
                                @title,@type,@type_eventtype,@Content ,@date)";
-            MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings[2].ToString());
+            MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings[1].ToString());
             MySqlCommand link;
                 con.Open();
                 link = con.CreateCommand();
@@ -275,7 +275,7 @@ namespace WebApplication1.Models
                                 album_AlbumCount,ImgAddress
                             )VALUES(
                                @album_AlbumCount,@ImgAddress)";
-            MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings[2].ToString());
+            MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings[1].ToString());
             MySqlCommand link;
             con.Open();
             link = con.CreateCommand();
@@ -304,7 +304,7 @@ namespace WebApplication1.Models
                                 title,Content,date
                             )VALUES(
                                @title,@Content,@date)";
-            MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings[2].ToString());
+            MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings[1].ToString());
             MySqlCommand link;
             con.Open();
             link = con.CreateCommand();
@@ -370,7 +370,7 @@ namespace WebApplication1.Models
         {
             string sqlstr = @"SELECT * FROM localsql.album";
             CountLine = 0;
-            MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings[2].ToString());
+            MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings[1].ToString());
             MySqlCommand link;
             DataTable dt = new DataTable();
             con.Open();
@@ -387,7 +387,7 @@ namespace WebApplication1.Models
         }
         private void SQLlink()
         {
-            MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings[2].ToString());
+            MySqlConnection con = new MySqlConnection(WebConfigurationManager.ConnectionStrings[1].ToString());
             MySqlCommand link;
             try
             {

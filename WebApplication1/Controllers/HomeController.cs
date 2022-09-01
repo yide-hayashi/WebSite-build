@@ -66,7 +66,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult Address()
         {
-            ViewBag.text = selectsql("SELECT * FROM localsql.optionaddress ", new[] { "AddressName", "Img", "address", "phone", "TrafficInfo" }, 0, -1);
+            ViewBag.text = selectsql("SELECT * FROM localsql.OptionAddress ", new[] { "AddressName", "Img", "address", "phone", "TrafficInfo" }, 0, -1);
             headdisplay();
             return View();
         }
@@ -378,31 +378,36 @@ namespace WebApplication1.Controllers
         }
         private string DelHtmlTag(string html)
         {
-            int i = 0;
-            bool flag = false; //判斷旗標
-            string context = "";
-            for (i = 0; i < html.Length;)
+            if (html != null)
             {
-                if (html[i] == '<' && !flag)
+                int i = 0;
+                bool flag = false; //判斷旗標
+                string context = "";
+                for (i = 0; i < html.Length;)
                 {
-                    flag = true;
+                    if (html[i] == '<' && !flag)
+                    {
+                        flag = true;
+                    }
+                    else if (html[i] == '>' && flag)
+                    {
+                        html = html.Substring(i + 1, html.Length - (i + 1));
+                        i = 0;
+                        flag = false;
+                    }
+                    if (!flag && html[i] != '<')
+                    {
+                        context += html.Substring(0, 1);
+                        html = html.Substring(i + 1, html.Length - (i + 1));
+                        i = 0;
+                    }
+                    else if (flag)
+                        i++;
                 }
-                else if (html[i] == '>' && flag)
-                {
-                    html = html.Substring(i + 1, html.Length - (i + 1));
-                    i = 0;
-                    flag = false;
-                }
-                if (!flag && html[i] != '<')
-                {
-                    context += html.Substring(0, 1);
-                    html = html.Substring(i + 1, html.Length - (i + 1));
-                    i = 0;
-                }
-                else if (flag)
-                    i++;
+                return context.Replace("&nbsp;", " ").Replace("\r", "").Replace("\n", "").Replace("\t", "");
             }
-            return context.Replace("&nbsp;", " ").Replace("\r", "").Replace("\n", "").Replace("\t", "");
+            else
+                return "";
         }
         private int selectCount(int count, string sql)
         {
