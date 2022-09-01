@@ -19,10 +19,6 @@
     @Scripts.Render("~/bundles/manager")
     <link rel="stylesheet" type="text/css" href="/Content/manager/login.css" />
     <style>
-        .loginbut {
-            position: relative;
-            top: 11%;
-        }
         </style>
 </head>
 <body>
@@ -38,13 +34,13 @@
                 <div id="login">
                     <div id="acc">
                         <img src="~/img/login/key.png" class="height" />  <label class="height">帳號</label>
-                        @Html.TextBoxFor(ma => ma.account_p, new { @class = "height" });
+                        @Html.TextBoxFor(ma => ma.account_p, new { @class = "height" })
                         
 
                     </div>
                     <div id="pw">
                         <img src="~/img/login/key.png" class="height" />  <label class="height">密碼</label>
-                        @Html.PasswordFor(model => model.pw_p, new { @class = "height" });
+                        @Html.PasswordFor(model => model.pw_p, new { @class = "height" })
                     </div>
                     <input type="submit" class="loginbut" value="登陸"/>
                 </div>

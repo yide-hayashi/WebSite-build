@@ -5,7 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script>
-    
+    $(function () {
+        if (document.getElementsByTagName("img").length > 1) {
+            var imgtag = document.getElementsByTagName("img");
+            for (var i = 1; i < imgtag.length; i++) {
+                $("img").eq(i).css("width", $(".noticeContent.contentAbout").width() - 2+"px");
+            }
+        }
+    });
+
 </script>
 
 
